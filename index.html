@@ -41,6 +41,11 @@
     transform:scale(0.97);
 }
 
+.choice.selected{
+    background:#ff7fb0;   /* 濃いピンク */
+    color:#ffffff;
+}
+
 body{
     font-family:sans-serif;
     max-width:700px;
@@ -389,19 +394,31 @@ function renderQuestion(){
 
         btn.textContent = song.name;
 
-        btn.onclick = () => {
+btn.onclick = () => {
 
-            currentChoices.forEach(s=>{
+    // すべてのボタンからselectedを外す
+    document.querySelectorAll(".choice").forEach(b=>{
+        b.classList.remove("selected");
+    });
 
-                s.appearances++;
+    // 押したボタンだけselectedを付ける
+    btn.classList.add("selected");
 
-                if(s === song){
-                    s.score += 3;
-                }else{
-                    s.score -= 1;
-                }
+    currentChoices.forEach(s=>{
 
-            });
+        s.appearances++;
+
+        if(s === song){
+            s.score += 3;
+        }else{
+            s.score -= 1;
+        }
+
+    });
+
+    questionCount++;
+    renderQuestion();
+};
 
             questionCount++;
 
