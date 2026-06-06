@@ -386,11 +386,7 @@ function renderQuestion(){
 
         btn.onclick = () => {
 
-            document.querySelectorAll(".choice").forEach(b=>{
-                b.classList.remove("selected");
-            });
 
-            btn.classList.add("selected");
 
             currentChoices.forEach(s=>{
                 s.appearances++;
