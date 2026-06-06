@@ -81,13 +81,23 @@ h1{
 }
 
 #result{
-    margin-top:10px;
+    margin-top:20px;
+
+    background:#fff;
+    border:2px solid #f4a8c4;
+    border-radius:18px;
+
+    padding:16px;
 }
 
 #result ol{
     list-style:none;
     padding:0;
     margin:0;
+
+    display:grid;
+    grid-template-columns: 1fr 1fr; /* ←2列 */
+    gap:6px;
 }
 #result li{
     padding:4px 0;      /* ←ここで行間調整 */
