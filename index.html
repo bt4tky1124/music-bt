@@ -7,15 +7,38 @@
 
 <style>
 
+#choices{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+    margin-top:20px;
+}
+
+/* 選択肢ボタン */
 .choice{
-    display:block;
-    width:100%;
-    padding:16px;
-    margin-bottom:12px;
-    font-size:18px;
+    background:#ffd6e7;
+    color:#333333;
+
     border:2px solid #f4a8c4;
-    border-radius:12px;
-    background:white;
+    border-radius:14px;
+
+    padding:18px 12px;
+    font-size:16px;
+
+    cursor:pointer;
+    text-align:center;
+
+    transition:0.15s;
+}
+
+/* ホバー（PC用） */
+.choice:hover{
+    background:#ffc2dd;
+}
+
+/* 押した時 */
+.choice:active{
+    transform:scale(0.97);
 }
 
 body{
