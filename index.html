@@ -118,6 +118,15 @@ h1{
     border-radius:12px;
     margin-bottom:16px;
 }
+<div style="margin-bottom:16px;">
+  <label>
+    回数：
+    <select id="questionSelect">
+      <option value="100">100回</option>
+      <option value="300">300回</option>
+    </select>
+  </label>
+</div>
 
 #startButton{
     padding:12px 24px;
@@ -393,7 +402,7 @@ const songs = songNames.map(name => ({
     appearances: 0
 }));
 
-const TOTAL_QUESTIONS = 100;
+let TOTAL_QUESTIONS = 100;
 
 let questionCount = 0;
 let currentChoices = [];
@@ -529,6 +538,8 @@ const theme =
   document.getElementById("titleInput")
   .value
   .trim();
+TOTAL_QUESTIONS =
+  Number(document.getElementById("questionSelect").value);
 
 if (!theme) {
   alert("テーマを入力してください");
