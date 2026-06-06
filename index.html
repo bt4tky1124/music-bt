@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>セトリ予想メーカー</title>
+
+<style>
+
+body{
+    font-family:sans-serif;
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+    background:#fff7fb;
+    color:#333333;
+}
+
+h1{
+    text-align:center;
+    color:#d86b9b;
+    margin-bottom:24px;
+}
+
+#startScreen{
+    text-align:center;
+    margin-top:60px;
+}
+
+#titleInput{
+    width:100%;
+    max-width:400px;
+    padding:12px;
+    font-size:16px;
+    border:2px solid #f4a8c4;
+    border-radius:12px;
+    margin-bottom:16px;
+}
+
+#startButton{
+    padding:12px 24px;
+    font-size:16px;
+    background:#ffd6e7;
+    color:#333333;
+    border:2px solid #f4a8c4;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+#progress{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:20px;
+    color:#666666;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="startScreen">
+
+  <h1>セトリ予想メーカー</h1>
+
+  <p>テーマを入力してください</p>
+
+  <input
+    type="text"
+    id="titleInput"
+    placeholder="例：ESCORTセトリ予想、夏に聴きたい曲、私のガチ夢中曲"
+  >
+
+  <button id="startButton">
+    開始
+  </button>
+
+</div>
+
+<div id="mainScreen" style="display:none;">
+
+  <h1>
+    セトリ予想メーカー
+    <br>
+    <span id="mainTitle"></span>
+  </h1>
+
+  <div id="progress"></div>
+
+  <div id="choices"></div>
+
+  <div id="result"></div>
+
+</div>
+
+<script>
+const songNames = [
+  "TRAIN",
+  "NO More Cry",
+  "Shake Body",
+  "Secret Express",
+  "panipani",
+  "Kiss Me Baby",
+  "No.1",
+  "走れ!!!!超特急",
+  "Kura☆Kura",
+  "ikki!!!!!i!!",
+  "RushHour",
+  "Believe×Believe",
+  "Pretty Girl",
+  "Star Gear",
+  "EBiDAY EBiNAI",
+  "Burn!",
+  "SURVIVOR",
+  "Superstar",
+  "Billion Beats",
+  "What's going on?",
+  "Time Wave",
+  "Gravitation",
+  "Bye Bye Bye",
+  "Starlight",
+  "STYLE",
+  "Signal",
+  "One Life",
+  "POLICEMEN",
+  "Drive on week",
+  "FLASHBACK",
+  "Snow break",
+  "COMP!!COMP!!COMP!!",
+  "refrain",
+  "Bloody Night",
+  "Make it hot!",
+  "Keyword",
+  "We Can Do It!",
+  "スターダスト LOVE TRAIN",
+  "バッタマン",
+  "Summer love",
+  "Beautiful Chaser",
+  "HOPESTEPJUMP",
+  "ONE/O Signal",
+  "fanfare",
+  "Love again",
+  "Yell",
+  "OVER DRIVE",
+  "Turn Up",
+  "Seventh Heaven",
+  "超えてアバンチュール",
+  "LIBIDO",
+  "Beasty Spider",
+  "Whiteout",
+  "Peace of LOVE",
+  "ライオンライフ",
+  "Clap Our Hands!",
+  "Always you",
+  "超ネバギバDANCE",
+  "gr8est fourney",
+  "PAPAPAPA JUMPERS",
+  "My Buddy",
+  "浮つきWAVES",
+  "UNKNOWN…",
+  "a kind of love",
+  "Party Maker",
+  "need you",
+  "Booster",
+  "コーシエンノイ",
+  "霖雨",
+  "Full moon",
+  "PUMP ME UP",
+  "You know, I know",
+  "超特急です!!!!!!!",
+  "Time of GOLD",
+  "8号車との歌",
+  "Feel the light",
+  "Jesus",
+  "up to you",
+  "Fashion",
+  "Synchronism",
+  "DJ Dominator",
+  "BREAK OFF",
+  "ソレイユ",
+  "Hey Hey Hey",
+  "Draw イッパツ!",
+  "Before Dawn",
+  "激おこスティックファイナリアリティぷんぷんドリームわ~るど",
+  "Four Seasons",
+  "Play Back",
+  "TAXI",
+  "小さな光",
+  "SAY NO",
+  "Don’t Stop 恋",
+  "Revival Love",
+  "SAIKOU KOUSHIN",
+  "Fantasy Love Train ~君の元までつながるRail~",
+  "超越マイウェイ",
+  "＃いいね",
+  "Table Manners",
+  "Stand up",
+  "Dear My グッバイ",
+  "The End For Beginning",
+  "Jasper",
+  "Never Mine",
+  "凱歌",
+  "So Crazy",
+  "My Answer",
+  "Winter Show",
+  "Asayake",
+  "Fantasista",
+  "キズナアルゴリズム",
+  "What’s up!?",
+  "Body Rock",
+  "On ＆One",
+  "CARNAVAL",
+  "같이 가자",
+  "Добрый день",
+  "Yodelic Fire",
+  "Sonrisa",
+  "荣光",
+  "Magnifique",
+  "Chill out@JP",
+  "Cead Mile Faite",
+  "大大大地",
+  "Holtasoley",
+  "Dance Dance Dancing!",
+  "Te quiero musho",
+  "You Don’t Care",
+  "Guilty",
+  "クレッシェンド",
+  "ウサギミック",
+  "宇宙ドライブ",
+  "BakaBakka",
+  "颯爽とハローマイラヴ",
+  "きみとシンギュラリティ",
+  "NEW WORLD",
+  "シャンディ",
+  "Call My Name",
+  "Lesson II",
+  "MORA MORA",
+  "Rail to Dream ～唯一無二番線出発進行です～",
+  "KNOCK U DOWN",
+  "Thinking of You",
+  "Winning Run",
+  "ラキラキ",
+  "Typhoon",
+  "Together As One",
+  "君と、奏で",
+  "Steal a Kiss",
+  "MEMORIAる",
+  "Love Song",
+  "ジュブナイラー",
+  "Spice",
+  "星屑のダンスフロア",
+  "Countdown",
+  "AwA AwA",
+  "クリスマス・イブ",
+  "JOKER FACE",
+  "メタルなかよし",
+  "踊ライナー",
+  "キャラメルハート",
+  "Velvet Venom",
+  "Big Ta-Da!",
+  "Ready?",
+  "EVE",
+  "NINE LIVES",
+  "ウィンクキラー",
+  "スピカ",
+  "REAL",
+  "POKERFACE",
+  "C'est la vie",
+  "ガチ夢中",
+  "STEP BY STEP"
+];
+const songs = songNames.map(name => ({
+    name,
+    score:0,
+    appearances:0
+}));
+
+const TOTAL_QUESTIONS = 100;
+
+let questionCount = 0;
+let currentChoices = [];
+
+function shuffle(arr){
+    return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function getCurrentPool(){
+
+    const ranking =
+        [...songs].sort((a,b)=>b.score-a.score);
+
+    if(questionCount < 80){
+        return songs;
+    }
+
+    return ranking.slice(
+        14,
+        Math.min(45, ranking.length)
+    );
+}
+
+function getFourSongs(){
+
+    const pool = getCurrentPool();
+
+    const minAppearances =
+        Math.min(...pool.map(
+            song => song.appearances
+        ));
+
+    let candidates =
+        pool.filter(
+            song =>
+            song.appearances <=
+            minAppearances + 1
+        );
+
+    if(candidates.length < 4){
+
+        candidates =
+            pool.filter(
+                song =>
+                song.appearances <=
+                minAppearances + 2
+            );
+    }
+
+    return shuffle(candidates).slice(0,4);
+}
+
+function renderQuestion(){
+
+    if(questionCount >= TOTAL_QUESTIONS){
+        showResults();
+        return;
+    }
+
+    document.getElementById("progress")
+        .textContent =
+        `${questionCount+1} / ${TOTAL_QUESTIONS}`;
+
+    currentChoices = getFourSongs();
+
+    const choices =
+        document.getElementById("choices");
+
+    choices.innerHTML = "";
+
+    currentChoices.forEach(song=>{
+
+        const btn =
+            document.createElement("button");
+
+        btn.className = "choice";
+
+        btn.textContent = song.name;
+
+        btn.onclick = () => {
+
+            currentChoices.forEach(s=>{
+
+                s.appearances++;
+
+                if(s === song){
+                    s.score += 3;
+                }else{
+                    s.score -= 1;
+                }
+
+            });
+
+            questionCount++;
+
+            renderQuestion();
+        };
+
+        choices.appendChild(btn);
+    });
+}
+
+function showResults(){
+
+    document.getElementById("choices").innerHTML = "";
+
+    document.getElementById("progress").textContent =
+        "終了";
+
+    const ranking =
+        [...songs].sort(
+            (a,b) => b.score - a.score
+        );
+
+    let html = "<h2>上位30曲</h2><ol>";
+
+    ranking.slice(0,30).forEach(song => {
+
+        html += `<li>${song.name}</li>`;
+
+    });
+
+    html += "</ol>";
+
+    document.getElementById("result").innerHTML =
+        html;
+}
+
+
+
+document
+.getElementById("startButton")
+.addEventListener("click", () => {
+
+const theme =
+  document.getElementById("titleInput")
+  .value
+  .trim();
+
+if (!theme) {
+  alert("テーマを入力してください");
+  return;
+}
+
+document.getElementById("mainTitle")
+  .textContent = `〜${theme}編〜`;
+
+document.getElementById("startScreen")
+  .style.display = "none";
+
+document.getElementById("mainScreen")
+  .style.display = "block";
+
+renderQuestion();
+
+});
+
+</script>
+
+</body>
+</html>
