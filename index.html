@@ -53,7 +53,7 @@ h1{
     text-align:center;
     color:#333333; 
     margin-bottom248px;
-    font-size:20px;
+    font-size:22px;
 
 }
     
@@ -467,8 +467,8 @@ function showResults(){
 
     let html = "<ol>";
 
-    ranking.slice(0,30).forEach(song => {
-        html += `<li>${song.name}</li>`;
+    ranking.slice(0,30).forEach((song, index) => {
+       html += `<li>${index + 1}. ${song.name}</li>`;
     });
 
     html += "</ol>";
