@@ -415,7 +415,9 @@ function renderQuestion() {
         showResults();
         return;
     }
-
+    
+    document.getElementById("progress").textContent =
+        `${questionCount + 1} / ${TOTAL_QUESTIONS}`;
 
     const choices = document.getElementById("choices");
     choices.innerHTML = "";
