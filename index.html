@@ -24,7 +24,7 @@
 /* 選択肢ボタン */
 .choice{
     background:#ffd6e7;
-    color:#222222;
+    color:#222;
 
     border:2px solid #f4a8c4;
     border-radius:14px;
@@ -36,10 +36,32 @@
     text-align:center;
 
     transition:0.15s;
+
+    position:relative;
+    overflow:hidden;
 }
 
+.choice::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
 
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.4),
+        transparent
+    );
 
+    transition:0.4s;
+}
+
+.choice:hover::before{
+    left:100%;
+}
 body{
     font-family:sans-serif;
     max-width:700px;
@@ -51,14 +73,35 @@ body{
 
 h1{
     text-align:center;
-    color:#333333; 
-    margin-bottom248px;
-    font-size:22px;
+    color:#333333;
+    margin-bottom:24px;
+    font-size:20px;
 
+    letter-spacing:2px;
+
+    border-bottom:2px solid #f4a8c4;
+    padding-bottom:10px;
+}
+.choice:active{
+    transform:scale(0.98);
+}
+#choices{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:16px;
+    margin-top:20px;
+
+    border-left:3px dashed #f4a8c4;
+    padding-left:12px;
 }
     
 #mainTitle{
-    font-size:20px;
+    font-size:14px;
+    display:inline-block;
+    margin-top:6px;
+
+    letter-spacing:1px;
+    color:#555;
 }
 
 #startScreen{
