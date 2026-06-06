@@ -403,33 +403,31 @@ function renderQuestion(){
     const choices = document.getElementById("choices");
     choices.innerHTML = "";
 
-    currentChoices.forEach(song=>{
+currentChoices.forEach(song => {
 
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.textContent = song.name;
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.textContent = song.name;
 
-        btn.onclick = () => {
+    btn.onclick = () => {
+        currentChoices.forEach(s => {
+            s.appearances++;
 
+            if (s === song) {
+                s.score += 3;
+            } else {
+                s.score -= 1;
+            }
+        });
 
+        questionCount++;
+        renderQuestion();
+    };
 
-            currentChoices.forEach(s=>{
-                s.appearances++;
+    choices.appendChild(btn);
+});
 
-                if(s === song){
-                    s.score += 3;
-                }else{
-                    s.score -= 1;
-                }
-            });
-
-            questionCount++;
-            renderQuestion();
-        };
-
-        choices.appendChild(btn);
-    });
-}
+} // ← renderQuestionここで閉じる
 
 function showResults(){
 
