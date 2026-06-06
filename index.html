@@ -455,26 +455,18 @@ function showResults(){
 
     document.getElementById("choices").innerHTML = "";
 
-    document.getElementById("progress").textContent =
-        "終了";
-
     const ranking =
-        [...songs].sort(
-            (a,b) => b.score - a.score
-        );
+        [...songs].sort((a,b) => b.score - a.score);
 
-    let html = "<h2>結果</h2><ol>";
+    let html = "<ol>";
 
     ranking.slice(0,30).forEach(song => {
-
         html += `<li>${song.name}</li>`;
-
     });
 
     html += "</ol>";
 
-    document.getElementById("result").innerHTML =
-        html;
+    document.getElementById("result").innerHTML = html;
 }
 
 
