@@ -128,7 +128,7 @@ h1{
   <h1>超特急の楽曲30選</h1>
 
 <p class="description">
-  超特急の楽曲からランダムで選択肢が表示されるので、好きなテーマを入力して、この中で1番テーマに当てはまってるのはこれかな～と直感でやってみてください！(よければ私に結果を教えてください楽曲語りましょう^^)<br>各4択×100回 所要時間：5～10分
+  超特急の楽曲からランダムで選択肢が表示されるので、好きなテーマを入力して、この中で1番テーマに当てはまってるのはこれかな～と直感でやってみてください！<br>(よければ私に結果を教えてください楽曲語りましょう^^)<br>各4択×100回 所要時間：5～10分
 </p>
 
   <input
@@ -339,8 +339,8 @@ const songNames = [
 ];
 const songs = songNames.map(name => ({
     name,
-    score:0,
-    appearances:0
+    score: 0,
+    appearances: 0
 }));
 
 const TOTAL_QUESTIONS = 100;
@@ -367,75 +367,89 @@ function getCurrentPool(){
     );
 }
 
-function getFourSongs(){
+function getFourSongs() {
+    const pool = songs;
 
-    const pool = getCurrentPool();
+    // まだ一度も出てない曲を優先
+    const minApp = Math.min(...pool.map(s => s.appearances));
 
-    const minAppearances =
-        Math.min(...pool.map(
-            song => song.appearances
-        ));
+    const candidates = pool.filter(s =>
+        s.appearances <= minApp + 1
+    );
 
-    let candidates =
-        pool.filter(
-            song =>
-            song.appearances <=
-            minAppearances + 1
-        );
+    // 必ずシャッフルしてコピー
+    const shuffled = [...candidates]
+        .sort(() => Math.random() - 0.5);
 
-    if(candidates.length < 4){
+    // 足りない場合は全体から補充（絶対4つ保証）
+    const backup = [...songs]
+        .sort(() => Math.random() - 0.5);
 
-        candidates =
-            pool.filter(
-                song =>
-                song.appearances <=
-                minAppearances + 2
-            );
+    const result = [];
+
+    for (let i = 0; i < backup.length && result.length < 4; i++) {
+        const song = backup[i];
+
+        if (!result.includes(song)) {
+            result.push(song);
+        }
     }
 
-return shuffle(candidates).slice(0,4).filter(Boolean);
+    // 最終安全チェック（絶対崩れない）
+    while (result.length < 4) {
+        result.push({
+            name: "ERROR",
+            score: 0,
+            appearances: 0
+        });
+    }
+
+    return result.slice(0, 4);
 }
 
-function renderQuestion(){
+function renderQuestion() {
+
+    if (questionCount >= TOTAL_QUESTIONS) {
+        showResults();
+        return;
+    }
 
     document.getElementById("progress").textContent =
-        `${questionCount+1} / ${TOTAL_QUESTIONS}`;
-
-    currentChoices = getFourSongs();
+        `${questionCount + 1} / ${TOTAL_QUESTIONS}`;
 
     const choices = document.getElementById("choices");
     choices.innerHTML = "";
 
-    if(questionCount >= TOTAL_QUESTIONS){
-    showResults();
-    return;
-    }
+    currentChoices = getFourSongs();
 
-currentChoices.forEach(song => {
+    currentChoices.forEach(song => {
 
-    const btn = document.createElement("button");
-    btn.className = "choice";
-    btn.textContent = song.name;
+        // 安全ガード（ここ超重要）
+        if (!song || !song.name) return;
 
-    btn.onclick = () => {
-        currentChoices.forEach(s => {
-            s.appearances++;
+        const btn = document.createElement("button");
+        btn.className = "choice";
+        btn.textContent = song.name;
 
-            if (s === song) {
-                s.score += 3;
-            } else {
-                s.score -= 1;
-            }
-        });
+        btn.onclick = () => {
 
-        questionCount++;
-        renderQuestion();
-    };
+            currentChoices.forEach(s => {
+                s.appearances++;
 
-    choices.appendChild(btn);
-});
+                if (s === song) {
+                    s.score += 3;
+                } else {
+                    s.score -= 1;
+                }
+            });
 
-} // ← renderQuestionここで閉じる
+            questionCount++;
+            renderQuestion();
+        };
+
+        choices.appendChild(btn);
+    });
+}
 
 function showResults(){
 
