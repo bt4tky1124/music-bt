@@ -403,6 +403,11 @@ function renderQuestion(){
     const choices = document.getElementById("choices");
     choices.innerHTML = "";
 
+    if(questionCount >= TOTAL_QUESTIONS){
+    showResults();
+    return;
+    }
+
 currentChoices.forEach(song => {
 
     const btn = document.createElement("button");
