@@ -231,369 +231,156 @@ h1{
 
 <script>
 const songNames = [
-  "TRAIN",
-  "NO More Cry",
-  "Shake Body",
-  "Secret Express",
-  "panipani",
-  "Kiss Me Baby",
-  "No.1",
-  "走れ!!!!超特急",
-  "Kura☆Kura",
-  "ikki!!!!!i!!",
-  "RushHour",
-  "Believe×Believe",
-  "Pretty Girl",
-  "Star Gear",
-  "EBiDAY EBiNAI",
-  "Burn!",
-  "SURVIVOR",
-  "Superstar",
-  "Billion Beats",
-  "What's going on?",
-  "Time Wave",
-  "Gravitation",
-  "Bye Bye Bye",
-  "Starlight",
-  "STYLE",
-  "Signal",
-  "One Life",
-  "POLICEMEN",
-  "Drive on week",
-  "FLASHBACK",
-  "Snow break",
-  "COMP!!COMP!!COMP!!",
-  "refrain",
-  "Bloody Night",
-  "Make it hot!",
-  "Keyword",
-  "We Can Do It!",
-  "スターダスト LOVE TRAIN",
-  "バッタマン",
-  "Summer love",
-  "Beautiful Chaser",
-  "HOPESTEPJUMP",
-  "ONE/O Signal",
-  "fanfare",
-  "Love again",
-  "Yell",
-  "OVER DRIVE",
-  "Turn Up",
-  "Seventh Heaven",
-  "超えてアバンチュール",
-  "LIBIDO",
-  "Beasty Spider",
-  "Whiteout",
-  "Peace of LOVE",
-  "ライオンライフ",
-  "Clap Our Hands!",
-  "Always you",
-  "超ネバギバDANCE",
-  "gr8est fourney",
-  "PAPAPAPA JUMPERS",
-  "My Buddy",
-  "浮つきWAVES",
-  "UNKNOWN…",
-  "a kind of love",
-  "Party Maker",
-  "need you",
-  "Booster",
-  "コーシエンノイ",
-  "霖雨",
-  "Full moon",
-  "PUMP ME UP",
-  "You know, I know",
-  "超特急です!!!!!!!",
-  "Time of GOLD",
-  "8号車との歌",
-  "Feel the light",
-  "Jesus",
-  "up to you",
-  "Fashion",
-  "Synchronism",
-  "DJ Dominator",
-  "BREAK OFF",
-  "ソレイユ",
-  "Hey Hey Hey",
-  "Draw イッパツ!",
-  "Before Dawn",
-  "激おこスティックファイナリアリティぷんぷんドリームわ~るど",
-  "Four Seasons",
-  "Play Back",
-  "TAXI",
-  "小さな光",
-  "SAY NO",
-  "Don’t Stop 恋",
-  "Revival Love",
-  "SAIKOU KOUSHIN",
-  "Fantasy Love Train ~君の元までつながるRail~",
-  "超越マイウェイ",
-  "＃いいね",
-  "Table Manners",
-  "Stand up",
-  "Dear My グッバイ",
-  "The End For Beginning",
-  "Jasper",
-  "Never Mine",
-  "凱歌",
-  "So Crazy",
-  "My Answer",
-  "Winter Show",
-  "Asayake",
-  "Fantasista",
-  "キズナアルゴリズム",
-  "What’s up!?",
-  "Body Rock",
-  "On ＆One",
-  "CARNAVAL",
-  "같이 가자",
-  "Добрый день",
-  "Yodelic Fire",
-  "Sonrisa",
-  "荣光",
-  "Magnifique",
-  "Chill out@JP",
-  "Cead Mile Faite",
-  "大大大地",
-  "Holtasoley",
-  "Dance Dance Dancing!",
-  "Te quiero musho",
-  "You Don’t Care",
-  "Guilty",
-  "クレッシェンド",
-  "ウサギミック",
-  "宇宙ドライブ",
-  "BakaBakka",
-  "颯爽とハローマイラヴ",
-  "きみとシンギュラリティ",
-  "NEW WORLD",
-  "シャンディ",
-  "Call My Name",
-  "Lesson II",
-  "MORA MORA",
-  "Rail to Dream ～唯一無二番線出発進行です～",
-  "KNOCK U DOWN",
-  "Thinking of You",
-  "Winning Run",
-  "ラキラキ",
-  "Typhoon",
-  "Together As One",
-  "君と、奏で",
-  "Steal a Kiss",
-  "MEMORIAる",
-  "Love Song",
-  "ジュブナイラー",
-  "Spice",
-  "星屑のダンスフロア",
-  "Countdown",
-  "AwA AwA",
-  "クリスマス・イブ",
-  "JOKER FACE",
-  "メタルなかよし",
-  "踊ライナー",
-  "キャラメルハート",
-  "Velvet Venom",
-  "Big Ta-Da!",
-  "Ready?",
-  "EVE",
-  "NINE LIVES",
-  "ウィンクキラー",
-  "スピカ",
-  "REAL",
-  "POKERFACE",
-  "C'est la vie",
-  "ガチ夢中",
-  "STEP BY STEP",
-  "サヨナラは雪のあとで",
-  "Hero"
+  "TRAIN","NO More Cry","Shake Body","Secret Express","panipani",
+  "Kiss Me Baby","No.1","走れ!!!!超特急","Kura☆Kura","ikki!!!!!i!!",
+  "RushHour","Believe×Believe","Pretty Girl","Star Gear","EBiDAY EBiNAI",
+  "Burn!","SURVIVOR","Superstar","Billion Beats","What's going on?",
+  "Time Wave","Gravitation","Bye Bye Bye","Starlight","STYLE",
+  "Signal","One Life","POLICEMEN","Drive on week","FLASHBACK",
+  "Snow break","COMP!!COMP!!COMP!!","refrain","Bloody Night","Make it hot!",
+  "Keyword","We Can Do It!","スターダスト LOVE TRAIN","バッタマン","Summer love",
+  "Beautiful Chaser","HOPESTEPJUMP","ONE/O Signal","fanfare","Love again",
+  "Yell","OVER DRIVE","Turn Up","Seventh Heaven","超えてアバンチュール",
+  "LIBIDO","Beasty Spider","Whiteout","Peace of LOVE","ライオンライフ",
+  "Clap Our Hands!","Always you","超ネバギバDANCE","gr8est fourney","PAPAPAPA JUMPERS",
+  "My Buddy","浮つきWAVES","UNKNOWN…","a kind of love","Party Maker",
+  "need you","Booster","コーシエンノイ","霖雨","Full moon",
+  "PUMP ME UP","You know, I know","超特急です!!!!!!!","Time of GOLD","8号車との歌",
+  "Feel the light","Jesus","up to you","Fashion","Synchronism",
+  "DJ Dominator","BREAK OFF","ソレイユ","Hey Hey Hey","Draw イッパツ!",
+  "Before Dawn","激おこスティックファイナリアリティぷんぷんドリームわ~るど","Four Seasons","Play Back","TAXI",
+  "小さな光","SAY NO","Don’t Stop 恋","Revival Love","SAIKOU KOUSHIN",
+  "Fantasy Love Train ~君の元までつながるRail~","超越マイウェイ","＃いいね","Table Manners","Stand up",
+  "Dear My グッバイ","The End For Beginning","Jasper","Never Mine","凱歌",
+  "So Crazy","My Answer","Winter Show","Asayake","Fantasista",
+  "キズナアルゴリズム","What’s up!?","Body Rock","On ＆One","CARNAVAL",
+  "같이 가자","Добрый день","Yodelic Fire","Sonrisa","荣光",
+  "Magnifique","Chill out@JP","Cead Mile Faite","大大大地","Holtasoley",
+  "Dance Dance Dancing!","Te quiero musho","You Don’t Care","Guilty","クレッシェンド",
+  "ウサギミック","宇宙ドライブ","BakaBakka","颯爽とハローマイラヴ","きみとシンギュラリティ",
+  "NEW WORLD","シャンディ","Call My Name","Lesson II","MORA MORA",
+  "Rail to Dream ～唯一無二番線出発進行です～","KNOCK U DOWN","Thinking of You","Winning Run","ラキラキ",
+  "Typhoon","Together As One","君と、奏で","Steal a Kiss","MEMORIAる",
+  "Love Song","ジュブナイラー","Spice","星屑のダンスフロア","Countdown",
+  "AwA AwA","クリスマス・イブ","JOKER FACE","メタルなかよし","踊ライナー",
+  "キャラメルハート","Velvet Venom","Big Ta-Da!","Ready?","EVE",
+  "NINE LIVES","ウィンクキラー","スピカ","REAL","POKERFACE",
+  "C'est la vie","ガチ夢中","STEP BY STEP","サヨナラは雪のあとで","Hero"
 ];
+
 const songs = songNames.map(name => ({
-    name,
-    score: 0,
-    appearances: 0
+  name,
+  score: 0,
+  appearances: 0
 }));
 
 let TOTAL_QUESTIONS = 100;
-
 let questionCount = 0;
 let currentChoices = [];
 
-function shuffle(arr){
-    return [...arr].sort(() => Math.random() - 0.5);
-}
+function startGame(count) {
+  const theme = document.getElementById("titleInput").value.trim();
 
-function getCurrentPool(){
+  if (!theme) {
+    alert("テーマを入力してください");
+    return;
+  }
 
-    const ranking =
-        [...songs].sort((a,b)=>b.score-a.score);
+  TOTAL_QUESTIONS = count;
+  questionCount = 0;
 
-    if(questionCount < 80){
-        return songs;
-    }
+  document.getElementById("mainTitle").textContent = theme;
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("mainScreen").style.display = "block";
 
-    return ranking.slice(
-        14,
-        Math.min(45, ranking.length)
-    );
-}
-
-function startGame(count){
-
-    const theme =
-      document.getElementById("titleInput")
-      .value
-      .trim();
-
-    if (!theme) {
-        alert("テーマを入力してください");
-        return;
-    }
-
-    TOTAL_QUESTIONS = count;
-    questionCount = 0;
-
-    document.getElementById("mainTitle").textContent = theme;
-
-    document.getElementById("startScreen").style.display = "none";
-    document.getElementById("mainScreen").style.display = "block";
-
-    renderQuestion();
+  renderQuestion();
 }
 
 function getFourSongs() {
-    const pool = songs;
+  const pool = songs;
 
-    // まだ一度も出てない曲を優先
-    const minApp = Math.min(...pool.map(s => s.appearances));
+  const minApp = Math.min(...pool.map(s => s.appearances));
 
-    const candidates = pool.filter(s =>
-        s.appearances <= minApp + 1
-    );
+  const candidates = pool.filter(s =>
+    s.appearances <= minApp + 1
+  );
 
-    // 必ずシャッフルしてコピー
-    const shuffled = [...candidates]
-        .sort(() => Math.random() - 0.5);
+  const shuffled = [...candidates].sort(() => Math.random() - 0.5);
 
-    // 足りない場合は全体から補充（絶対4つ保証）
-    const backup = [...songs]
-        .sort(() => Math.random() - 0.5);
+  const backup = [...songs].sort(() => Math.random() - 0.5);
 
-    const result = [];
+  const result = [];
 
-    for (let i = 0; i < backup.length && result.length < 4; i++) {
-        const song = backup[i];
+  for (let i = 0; i < backup.length && result.length < 4; i++) {
+    const song = backup[i];
+    if (!result.includes(song)) result.push(song);
+  }
 
-        if (!result.includes(song)) {
-            result.push(song);
-        }
-    }
+  while (result.length < 4) {
+    result.push({ name: "ERROR", score: 0, appearances: 0 });
+  }
 
-    // 最終安全チェック（絶対崩れない）
-    while (result.length < 4) {
-        result.push({
-            name: "ERROR",
-            score: 0,
-            appearances: 0
-        });
-    }
-
-    return result.slice(0, 4);
+  return result.slice(0, 4);
 }
 
 function renderQuestion() {
+  if (questionCount >= TOTAL_QUESTIONS) {
+    showResults();
+    return;
+  }
 
-    if (questionCount >= TOTAL_QUESTIONS) {
-        showResults();
-        return;
-    }
-    
-    document.getElementById("progress").textContent =
-        `${questionCount + 1} / ${TOTAL_QUESTIONS}`;
+  document.getElementById("progress").textContent =
+    `${questionCount + 1} / ${TOTAL_QUESTIONS}`;
 
-    const choices = document.getElementById("choices");
-    choices.innerHTML = "";
+  const choices = document.getElementById("choices");
+  choices.innerHTML = "";
 
-    currentChoices = getFourSongs();
+  currentChoices = getFourSongs();
 
-    currentChoices.forEach(song => {
+  currentChoices.forEach(song => {
+    if (!song || !song.name) return;
 
-        // 安全ガード（ここ超重要）
-        if (!song || !song.name) return;
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.textContent = song.name;
 
-        const btn = document.createElement("button");
-        btn.className = "choice";
-        btn.textContent = song.name;
+    btn.onclick = () => {
+      currentChoices.forEach(s => {
+        s.appearances++;
+        if (s === song) s.score += 3;
+        else s.score -= 1;
+      });
 
-        btn.onclick = () => {
+      questionCount++;
+      renderQuestion();
+    };
 
-            currentChoices.forEach(s => {
-                s.appearances++;
-
-                if (s === song) {
-                    s.score += 3;
-                } else {
-                    s.score -= 1;
-                }
-            });
-
-            questionCount++;
-            renderQuestion();
-        };
-
-        choices.appendChild(btn);
-    });
+    choices.appendChild(btn);
+  });
 }
 
-function showResults(){
+function showResults() {
+  document.getElementById("choices").innerHTML = "";
 
-    document.getElementById("choices").innerHTML = "";
+  const ranking = [...songs].sort((a, b) => b.score - a.score);
 
-    const ranking =
-        [...songs].sort((a,b) => b.score - a.score);
+  let html = "<ol>";
 
-    let html = "<ol>";
+  ranking.slice(0, 30).forEach((song, index) => {
+    html += `<li>${index + 1}. ${song.name}</li>`;
+  });
 
-    ranking.slice(0,30).forEach((song, index) => {
-       html += `<li>${index + 1}. ${song.name}</li>`;
-    });
+  html += "</ol>";
 
-    html += "</ol>";
-
-    document.getElementById("result").innerHTML = html;
+  document.getElementById("result").innerHTML = html;
 }
 
+/* ボタンイベント */
+document.getElementById("start100")
+  .addEventListener("click", () => startGame(100));
 
-
-document
-.getElementById("startButton")
-.addEventListener("click", () => {
-
-const theme =
-  document.getElementById("titleInput")
-  .value
-  .trim();
-    
-document.getElementById("start100").addEventListener("click", () => startGame(100));
-document.getElementById("start300").addEventListener("click", () => startGame(300));
-
-if (!theme) {
-  alert("テーマを入力してください");
-  return;
-}
-
-document.getElementById("mainTitle")
-  .textContent = theme;
-
-document.getElementById("startScreen")
-  .style.display = "none";
-
-document.getElementById("mainScreen")
-  .style.display = "block";
-
-renderQuestion();
-
-});
-
+document.getElementById("start300")
+  .addEventListener("click", () => startGame(300));
 </script>
 
 </body>
