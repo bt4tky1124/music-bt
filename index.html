@@ -6,7 +6,16 @@
 <title>超特急の楽曲30選</title>
 
 <style>
-
+#start100, #start300{
+    padding:12px 18px;
+    margin:6px;
+    font-size:15px;
+    background:#ffd6e7;
+    color:#333;
+    border:2px solid #f4a8c4;
+    border-radius:12px;
+    cursor:pointer;
+}
 
 #choices{
     display:grid;
@@ -197,9 +206,10 @@ h1{
     placeholder="例：ESCORTセトリ予想、夏に聴きたい曲 etc..."
   >
 
-  <button id="startButton">
-    開始
-  </button>
+<div style="margin-top:10px;">
+  <button id="start100">100回スタート</button>
+  <button id="start300">300回スタート</button>
+</div>
 
 </div>
 
@@ -427,6 +437,29 @@ function getCurrentPool(){
     );
 }
 
+function startGame(count){
+
+    const theme =
+      document.getElementById("titleInput")
+      .value
+      .trim();
+
+    if (!theme) {
+        alert("テーマを入力してください");
+        return;
+    }
+
+    TOTAL_QUESTIONS = count;
+    questionCount = 0;
+
+    document.getElementById("mainTitle").textContent = theme;
+
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("mainScreen").style.display = "block";
+
+    renderQuestion();
+}
+
 function getFourSongs() {
     const pool = songs;
 
@@ -539,8 +572,9 @@ const theme =
   document.getElementById("titleInput")
   .value
   .trim();
-TOTAL_QUESTIONS =
-  Number(document.getElementById("questionSelect").value);
+    
+document.getElementById("start100").addEventListener("click", () => startGame(100));
+document.getElementById("start300").addEventListener("click", () => startGame(300));
 
 if (!theme) {
   alert("テーマを入力してください");
