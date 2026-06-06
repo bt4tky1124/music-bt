@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>セトリ予想メーカー</title>
+<title>超特急の楽曲なんでも30選</title>
 
 <style>
 
@@ -88,6 +88,10 @@ h1{
     list-style:none;
     padding:0;
     margin:0;
+
+    display:grid;
+    grid-template-columns: 1fr 1fr; /* ←2列 */
+    gap:8px;
 }
 #result li{
     background:#fff0f6;   /* ほんのりピンク */
@@ -112,14 +116,14 @@ h1{
 
 <div id="startScreen">
 
-  <h1>セトリ予想メーカー</h1>
+  <h1>セトリ予想メーカー超特急の楽曲なんでも30選</h1>
 
   <p>テーマを入力してください</p>
 
   <input
     type="text"
     id="titleInput"
-    placeholder="例：ESCORTセトリ予想、夏に聴きたい曲、私のガチ夢中曲"
+    placeholder="例：ESCORTセトリ予想、夏に聴きたい曲 etc..."
   >
 
   <button id="startButton">
