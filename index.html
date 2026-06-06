@@ -385,15 +385,10 @@ function getFourSongs(){
             );
     }
 
-    return shuffle(candidates).slice(0,4);
+return shuffle(candidates).slice(0,4).filter(Boolean);
 }
 
 function renderQuestion(){
-
-    if(questionCount >= TOTAL_QUESTIONS){
-        showResults();
-        return;
-    }
 
     document.getElementById("progress").textContent =
         `${questionCount+1} / ${TOTAL_QUESTIONS}`;
