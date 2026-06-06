@@ -374,52 +374,45 @@ function renderQuestion(){
         return;
     }
 
-    document.getElementById("progress")
-        .textContent =
+    document.getElementById("progress").textContent =
         `${questionCount+1} / ${TOTAL_QUESTIONS}`;
 
     currentChoices = getFourSongs();
 
-    const choices =
-        document.getElementById("choices");
-
+    const choices = document.getElementById("choices");
     choices.innerHTML = "";
 
     currentChoices.forEach(song=>{
 
-        const btn =
-            document.createElement("button");
-
+        const btn = document.createElement("button");
         btn.className = "choice";
-
         btn.textContent = song.name;
 
-btn.onclick = () => {
+        btn.onclick = () => {
 
-    document.querySelectorAll(".choice").forEach(b=>{
-        b.classList.remove("selected");
+            document.querySelectorAll(".choice").forEach(b=>{
+                b.classList.remove("selected");
+            });
+
+            btn.classList.add("selected");
+
+            currentChoices.forEach(s=>{
+                s.appearances++;
+
+                if(s === song){
+                    s.score += 3;
+                }else{
+                    s.score -= 1;
+                }
+            });
+
+            questionCount++;
+            renderQuestion();
+        };
+
+        choices.appendChild(btn);
     });
-
-    btn.classList.add("selected");
-
-    currentChoices.forEach(s=>{
-
-        s.appearances++;
-
-        if(s === song){
-            s.score += 3;
-        }else{
-            s.score -= 1;
-        }
-
-    });
-
-    questionCount++;
-
-    renderQuestion();
-};
-
-choices.appendChild(btn);
+}
 
 function showResults(){
 
