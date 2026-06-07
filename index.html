@@ -418,6 +418,10 @@ function startGame(count) {
 
   TOTAL_QUESTIONS = count;
   questionCount = 0;
+  songs.forEach(song => {
+    song.score = 0;
+    song.appearances = 0;
+  });
 
   document.getElementById("mainTitle").textContent = theme;
   document.getElementById("startScreen").style.display = "none";
@@ -427,30 +431,14 @@ function startGame(count) {
 }
 
 function getFourSongs() {
-  const pool = songs;
+  const sorted = [...songs].sort((a, b) => {
+    if (a.appearances !== b.appearances) {
+      return a.appearances - b.appearances;
+    }
+    return Math.random() - 0.5;
+  });
 
-  const minApp = Math.min(...pool.map(s => s.appearances));
-
-  const candidates = pool.filter(s =>
-    s.appearances <= minApp + 1
-  );
-
-  const shuffled = [...candidates].sort(() => Math.random() - 0.5);
-
-  const backup = [...songs].sort(() => Math.random() - 0.5);
-
-  const result = [];
-
-  for (let i = 0; i < backup.length && result.length < 4; i++) {
-    const song = backup[i];
-    if (!result.includes(song)) result.push(song);
-  }
-
-  while (result.length < 4) {
-    result.push({ name: "ERROR", score: 0, appearances: 0 });
-  }
-
-  return result.slice(0, 4);
+  return sorted.slice(0, 4);
 }
 
 function renderQuestion() {
