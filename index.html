@@ -151,7 +151,7 @@ h1{
     background:#fff;
     border:2px solid #f4a8c4;
     border-radius:18px;
-
+    font-size:17px;
     padding:16px;
 }
 
@@ -175,6 +175,16 @@ h1{
 
     border:none;        /* ←枠なし */
     background:none;    /* ←背景し */
+}
+
+.result-columns{
+    display:flex;
+    gap:40px;
+    justify-content:center;
+}
+
+.result-columns ol{
+    margin:0;
 }
 
 </style>
@@ -494,13 +504,23 @@ function showResults() {
 
   const ranking = [...songs].sort((a, b) => b.score - a.score);
 
-  let html = "<ol>";
+  let html = '<div class="result-columns">';
 
-  ranking.slice(0, 30).forEach((song, index) => {
+  // 左列（1～15位）
+  html += '<ol>';
+  ranking.slice(0, 15).forEach((song, index) => {
     html += `<li>${index + 1}. ${song.name}</li>`;
   });
+  html += '</ol>';
 
-  html += "</ol>";
+  // 右列（16～30位）
+  html += '<ol start="16">';
+  ranking.slice(15, 30).forEach((song, index) => {
+    html += `<li>${index + 16}. ${song.name}</li>`;
+  });
+  html += '</ol>';
+
+  html += '</div>';
 
   document.getElementById("result").innerHTML = html;
 }
