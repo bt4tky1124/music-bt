@@ -151,7 +151,7 @@ h1{
     background:#fff;
     border:2px solid #f4a8c4;
     border-radius:18px;
-    font-size:17px;
+
     padding:16px;
 }
 
@@ -175,21 +175,6 @@ h1{
 
     border:none;        /* ←枠なし */
     background:none;    /* ←背景し */
-}
-
-.result-columns{
-    display:flex;
-    gap:40px;
-    justify-content:center;
-}
-
-.result-columns ol{
-    margin:0;
-}
-.result-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:6px 30px;
 }
 
 </style>
@@ -509,22 +494,17 @@ function showResults() {
 
   const ranking = [...songs].sort((a, b) => b.score - a.score);
 
-  let html = '<div class="result-grid">';
+  let html = "<ol>";
 
-  for (let i = 0; i < 15; i++) {
-    const left = ranking[i];
-    const right = ranking[i + 15];
+  ranking.slice(0, 30).forEach((song, index) => {
+    html += `<li>${index + 1}. ${song.name}</li>`;
+  });
 
-    html += `
-      <div>${i + 1}. ${left.name}</div>
-      <div>${i + 16}. ${right.name}</div>
-    `;
-  }
-
-  html += '</div>';
+  html += "</ol>";
 
   document.getElementById("result").innerHTML = html;
 }
+
 /* ボタンイベント */
 document.getElementById("start100")
   .addEventListener("click", () => startGame(100));
