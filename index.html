@@ -186,6 +186,11 @@ h1{
 .result-columns ol{
     margin:0;
 }
+.result-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:6px 30px;
+}
 
 </style>
 
@@ -504,27 +509,22 @@ function showResults() {
 
   const ranking = [...songs].sort((a, b) => b.score - a.score);
 
-  let html = '<div class="result-columns">';
+  let html = '<div class="result-grid">';
 
-  // 左列（1～15位）
-  html += '<ol>';
-  ranking.slice(0, 15).forEach((song, index) => {
-    html += `<li>${index + 1}. ${song.name}</li>`;
-  });
-  html += '</ol>';
+  for (let i = 0; i < 15; i++) {
+    const left = ranking[i];
+    const right = ranking[i + 15];
 
-  // 右列（16～30位）
-  html += '<ol start="16">';
-  ranking.slice(15, 30).forEach((song, index) => {
-    html += `<li>${index + 16}. ${song.name}</li>`;
-  });
-  html += '</ol>';
+    html += `
+      <div>${i + 1}. ${left.name}</div>
+      <div>${i + 16}. ${right.name}</div>
+    `;
+  }
 
   html += '</div>';
 
   document.getElementById("result").innerHTML = html;
 }
-
 /* ボタンイベント */
 document.getElementById("start100")
   .addEventListener("click", () => startGame(100));
